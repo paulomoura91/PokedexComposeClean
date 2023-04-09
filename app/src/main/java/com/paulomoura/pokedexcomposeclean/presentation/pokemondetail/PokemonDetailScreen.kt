@@ -1,0 +1,2 @@
+package com.paulomoura.pokedexcomposeclean.presentation.pokemondetail
+
