@@ -14,3 +14,8 @@ data class Pokemon(
     val types: List<String>,
     val evolutions: List<Pokemon> = emptyList()
 )
+
+fun PokemonListItem.doesMatchSearch(query: String): Boolean {
+    val matchingPossibilities = listOf(number.toString(), name)
+    return matchingPossibilities.any { it.contains(query, ignoreCase = true) }
+}

@@ -10,7 +10,8 @@ class PokemonApiServiceImpl(private val httpClient: HttpClient) : PokemonApiServ
     override suspend fun getPokemons(): List<PokemonDTO> = httpClient.get { url(Constants.ApiRoutes.POKEMONS) }
 
     override suspend fun getPokemon(number: Int): PokemonDTO = httpClient.get {
-        url(Constants.ApiRoutes.POKEMON)
-        parameter(Constants.ApiParams.POKEMON_NUMBER, number)
+        url("${Constants.ApiRoutes.POKEMONS}/$number")
+        /*url(Constants.ApiRoutes.POKEMON)
+        parameter(Constants.ApiParams.POKEMON_NUMBER, number)*/
     }
 }
