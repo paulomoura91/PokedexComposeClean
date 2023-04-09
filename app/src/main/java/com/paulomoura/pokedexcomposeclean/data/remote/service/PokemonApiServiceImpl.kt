@@ -7,11 +7,15 @@ import io.ktor.client.request.*
 
 class PokemonApiServiceImpl(private val httpClient: HttpClient) : PokemonApiService {
 
-    override suspend fun getPokemons(): List<PokemonDTO> = httpClient.get { url(Constants.ApiRoutes.POKEMONS) }
+    override suspend fun getPokemons(): List<PokemonDTO> = httpClient.get {
+        url {
+            path(Constants.ApiRoutes.POKEMON)
+        }
+    }
 
     override suspend fun getPokemon(number: Int): PokemonDTO = httpClient.get {
-        url("${Constants.ApiRoutes.POKEMONS}/$number")
-        /*url(Constants.ApiRoutes.POKEMON)
-        parameter(Constants.ApiParams.POKEMON_NUMBER, number)*/
+        url {
+            path(Constants.ApiRoutes.POKEMON, number.toString())
+        }
     }
 }

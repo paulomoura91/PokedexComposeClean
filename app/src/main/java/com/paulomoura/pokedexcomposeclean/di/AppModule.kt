@@ -2,6 +2,7 @@ package com.paulomoura.pokedexcomposeclean.di
 
 import android.util.Log
 import com.paulomoura.pokedexcomposeclean.BuildConfig
+import com.paulomoura.pokedexcomposeclean.common.Constants
 import com.paulomoura.pokedexcomposeclean.common.Constants.LogTags.KTOR
 import com.paulomoura.pokedexcomposeclean.data.remote.service.PokemonApiService
 import com.paulomoura.pokedexcomposeclean.data.remote.service.PokemonApiServiceImpl
@@ -13,9 +14,11 @@ import com.paulomoura.pokedexcomposeclean.presentation.pokemondetail.PokemonDeta
 import com.paulomoura.pokedexcomposeclean.presentation.pokemonlist.PokemonListViewModel
 import io.ktor.client.*
 import io.ktor.client.engine.android.*
+import io.ktor.client.features.*
 import io.ktor.client.features.json.JsonFeature
 import io.ktor.client.features.json.serializer.*
 import io.ktor.client.features.logging.*
+import io.ktor.http.*
 import kotlinx.serialization.json.Json
 import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.dsl.module
@@ -40,6 +43,12 @@ val appModule = module {
                     }
                 }
                 level = LogLevel.ALL
+            }
+            defaultRequest {
+                url {
+                    protocol = URLProtocol.HTTP
+                    host = Constants.HOST
+                }
             }
         }
     }
