@@ -1,8 +1,8 @@
-package com.paulomoura.pokedexcomposeclean.domain.repository
+package com.paulomoura.pokedexcomposeclean.data.remote.service
 
 import com.paulomoura.pokedexcomposeclean.data.remote.dto.PokemonDTO
 
-interface PokemonRepository {
+interface PokemonApiService {
 
     suspend fun getPokemons(): List<PokemonDTO>
 
