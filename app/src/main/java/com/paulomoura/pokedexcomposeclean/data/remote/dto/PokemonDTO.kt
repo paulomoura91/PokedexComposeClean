@@ -1,6 +1,7 @@
 package com.paulomoura.pokedexcomposeclean.data.remote.dto
 
 import com.paulomoura.pokedexcomposeclean.domain.model.Pokemon
+import com.paulomoura.pokedexcomposeclean.domain.model.PokemonListItem
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -13,22 +14,31 @@ data class PokemonDTO(
     val evolutions: List<Int>
 )
 
-fun PokemonDTO.toEvolution() = Pokemon(
-    number = number,
-    name = name,
-    description = description,
-    imageUrl = imageUrl,
-    types = types
-)
+fun PokemonDTO.toPokemonListItem(): PokemonListItem {
+    return PokemonListItem(
+        name = name,
+        number = number,
+        imageUrl = imageUrl
+    )
+}
 
-fun PokemonDTO.toPokemon(pokemons: List<PokemonDTO>): Pokemon {
-    val filteredEvolutions = pokemons.filter { evolutions.contains(it.number) }.map { it.toEvolution() }
+fun PokemonDTO.toPokemon(pokemonDTOEvolutions: List<PokemonDTO>): Pokemon {
     return Pokemon(
         number = number,
         name = name,
         description = description,
         imageUrl = imageUrl,
         types = types,
-        evolutions = filteredEvolutions
+        evolutions = pokemonDTOEvolutions.map { it.toEvolution() }
+    )
+}
+
+private fun PokemonDTO.toEvolution(): Pokemon {
+    return Pokemon(
+        number = number,
+        name = name,
+        description = description,
+        imageUrl = imageUrl,
+        types = types
     )
 }

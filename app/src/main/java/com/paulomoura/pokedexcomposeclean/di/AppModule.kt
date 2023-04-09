@@ -46,4 +46,8 @@ val appModule = module {
     single<PokemonRepository> {
         PokemonRepositoryImpl(get())
     }
+
+    single {
+
+    }
 }
