@@ -1,6 +1,8 @@
 package com.paulomoura.pokedexcomposeclean.di
 
 import android.util.Log
+import com.paulomoura.pokedexcomposeclean.BuildConfig
+import com.paulomoura.pokedexcomposeclean.common.Constants.LogTags.KTOR
 import com.paulomoura.pokedexcomposeclean.data.remote.service.PokemonApiService
 import com.paulomoura.pokedexcomposeclean.data.remote.service.PokemonApiServiceImpl
 import com.paulomoura.pokedexcomposeclean.data.repository.PokemonRepositoryImpl
@@ -14,8 +16,6 @@ import io.ktor.client.engine.android.*
 import io.ktor.client.features.json.JsonFeature
 import io.ktor.client.features.json.serializer.*
 import io.ktor.client.features.logging.*
-import io.ktor.client.features.observer.*
-import io.ktor.util.*
 import kotlinx.serialization.json.Json
 import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.dsl.module
@@ -32,15 +32,14 @@ val appModule = module {
                 }
                 serializer = KotlinxSerializer(json)
             }
-            //arrumar log
             install(Logging) {
-                logger = @OptIn(KtorExperimentalAPI::class) Logger.ANDROID
-                level = LogLevel.ALL
-            }
-            install(ResponseObserver) {
-                onResponse { response ->
-                    Log.i("Ktor HTTP status:", "${response.status.value}")
+                logger = object : Logger {
+                    override fun log(message: String) {
+                        if (BuildConfig.DEBUG)
+                            Log.i(KTOR, message)
+                    }
                 }
+                level = LogLevel.ALL
             }
         }
     }

@@ -2,6 +2,10 @@ package com.paulomoura.pokedexcomposeclean.common
 
 object Constants {
 
+    object LogTags {
+        const val KTOR = "Ktor"
+    }
+
     object ApiRoutes {
         private const val BASE_URL = "http://192.168.15.2:8000"
         const val POKEMONS = "$BASE_URL/pokemon"
