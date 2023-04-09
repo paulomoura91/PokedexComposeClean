@@ -43,6 +43,11 @@ val appModule = module {
                 }
                 level = LogLevel.ALL
             }
+            install(HttpTimeout) {
+                requestTimeoutMillis = Constants.HTTP_TIMEOUT
+                connectTimeoutMillis = Constants.HTTP_TIMEOUT
+                socketTimeoutMillis = Constants.HTTP_TIMEOUT
+            }
             defaultRequest {
                 url {
                     protocol = URLProtocol.HTTP
