@@ -6,7 +6,7 @@ buildscript {
         lifecycle_version = '2.6.1'
         activity_compose_version = '1.7.0'
         compose_ui_version = '1.4.1'
-        compose_material_version = '1.4.0'
+        compose_material_version = '1.4.1'
         navigation_compose_version = '2.5.3'
         kotlinx_serialization_version = "1.0.1"
         junit_version = '4.13.2'
