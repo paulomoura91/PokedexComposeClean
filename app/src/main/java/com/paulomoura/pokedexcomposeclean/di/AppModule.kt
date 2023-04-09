@@ -31,7 +31,6 @@ val appModule = module {
                 val json = Json {
                     ignoreUnknownKeys = true
                     isLenient = true
-                    encodeDefaults = false
                 }
                 serializer = KotlinxSerializer(json)
             }
