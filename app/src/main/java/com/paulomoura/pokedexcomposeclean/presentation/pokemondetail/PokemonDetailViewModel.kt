@@ -2,8 +2,8 @@ package com.paulomoura.pokedexcomposeclean.presentation.pokemondetail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.paulomoura.pokedexcomposeclean.common.Constants.ERROR_POKEMON_DETAIL_STATE
 import com.paulomoura.pokedexcomposeclean.common.Response
+import com.paulomoura.pokedexcomposeclean.common.constants.ErrorConstants
 import com.paulomoura.pokedexcomposeclean.domain.usecase.GetPokemonUseCase
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -23,8 +23,8 @@ class PokemonDetailViewModel(private val getPokemonUseCase: GetPokemonUseCase) :
                 _uiState.value = when (response) {
                     is Response.Loading -> PokemonDetailState(loading = true)
                     is Response.Success -> response.data?.let { PokemonDetailState(pokemon = it) }
-                        ?: PokemonDetailState(error = ERROR_POKEMON_DETAIL_STATE)
-                    is Response.Error -> PokemonDetailState(error = ERROR_POKEMON_DETAIL_STATE)
+                        ?: PokemonDetailState(error = ErrorConstants.ERROR_POKEMON_DETAIL_STATE)
+                    is Response.Error -> PokemonDetailState(error = ErrorConstants.ERROR_POKEMON_DETAIL_STATE)
                 }
             }.collect()
         }

@@ -2,8 +2,8 @@ package com.paulomoura.pokedexcomposeclean.presentation.pokemonlist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.paulomoura.pokedexcomposeclean.common.Constants.ERROR_POKEMON_LIST_STATE
 import com.paulomoura.pokedexcomposeclean.common.Response
+import com.paulomoura.pokedexcomposeclean.common.constants.ErrorConstants
 import com.paulomoura.pokedexcomposeclean.domain.model.doesMatchSearch
 import com.paulomoura.pokedexcomposeclean.domain.usecase.GetPokemonsUseCase
 import kotlinx.coroutines.flow.*
@@ -34,7 +34,7 @@ class PokemonListViewModel(private val getPokemonsUseCase: GetPokemonsUseCase) :
                 _uiState.value = when (response) {
                     is Response.Loading -> PokemonListState(loading = true)
                     is Response.Success -> PokemonListState(pokemonListItems = response.data ?: emptyList())
-                    is Response.Error -> PokemonListState(error = ERROR_POKEMON_LIST_STATE)
+                    is Response.Error -> PokemonListState(error = ErrorConstants.ERROR_POKEMON_LIST_STATE)
                 }
             }.collect()
         }

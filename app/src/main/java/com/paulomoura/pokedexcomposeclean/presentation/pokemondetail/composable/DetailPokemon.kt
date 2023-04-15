@@ -18,7 +18,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import com.paulomoura.pokedex.theme.*
 import com.paulomoura.pokedexcomposeclean.R
 import com.paulomoura.pokedexcomposeclean.common.composable.debugPlaceholder
 import com.paulomoura.pokedexcomposeclean.common.extension.toPokemonNumber
@@ -27,6 +26,7 @@ import com.paulomoura.pokedexcomposeclean.presentation.pokemondetail.composable.
 import com.paulomoura.pokedexcomposeclean.presentation.ui.resources.EVOLUTIONS
 import com.paulomoura.pokedexcomposeclean.presentation.ui.resources.NO_EVOLUTION
 import com.paulomoura.pokedexcomposeclean.presentation.ui.resources.TYPE
+import com.paulomoura.pokedexcomposeclean.presentation.ui.theme.*
 
 @Composable
 fun DetailPokemon(pokemon: Pokemon?) {

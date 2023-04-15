@@ -5,10 +5,6 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
-import com.paulomoura.pokedex.theme.Purple200
-import com.paulomoura.pokedex.theme.Purple500
-import com.paulomoura.pokedex.theme.Purple700
-import com.paulomoura.pokedex.theme.Teal200
 
 private val DarkColorPalette = darkColors(
     primary = Purple200,

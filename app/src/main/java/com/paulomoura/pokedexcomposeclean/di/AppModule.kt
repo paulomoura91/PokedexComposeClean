@@ -2,8 +2,8 @@ package com.paulomoura.pokedexcomposeclean.di
 
 import android.util.Log
 import com.paulomoura.pokedexcomposeclean.BuildConfig
-import com.paulomoura.pokedexcomposeclean.common.Constants
-import com.paulomoura.pokedexcomposeclean.common.Constants.LogTags.KTOR
+import com.paulomoura.pokedexcomposeclean.common.constants.HttpConstants
+import com.paulomoura.pokedexcomposeclean.common.constants.LogTags
 import com.paulomoura.pokedexcomposeclean.data.remote.service.PokemonApiService
 import com.paulomoura.pokedexcomposeclean.data.remote.service.PokemonApiServiceImpl
 import com.paulomoura.pokedexcomposeclean.data.repository.PokemonRepositoryImpl
@@ -38,20 +38,20 @@ val appModule = module {
                 logger = object : Logger {
                     override fun log(message: String) {
                         if (BuildConfig.DEBUG)
-                            Log.i(KTOR, message)
+                            Log.i(LogTags.KTOR, message)
                     }
                 }
                 level = LogLevel.ALL
             }
             install(HttpTimeout) {
-                requestTimeoutMillis = Constants.HTTP_TIMEOUT
-                connectTimeoutMillis = Constants.HTTP_TIMEOUT
-                socketTimeoutMillis = Constants.HTTP_TIMEOUT
+                requestTimeoutMillis = HttpConstants.HTTP_TIMEOUT
+                connectTimeoutMillis = HttpConstants.HTTP_TIMEOUT
+                socketTimeoutMillis = HttpConstants.HTTP_TIMEOUT
             }
             defaultRequest {
                 url {
                     protocol = URLProtocol.HTTP
-                    host = Constants.HOST
+                    host = HttpConstants.HOST
                 }
             }
         }

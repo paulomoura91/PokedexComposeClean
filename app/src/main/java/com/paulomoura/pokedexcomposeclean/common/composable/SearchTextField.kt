@@ -15,8 +15,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.paulomoura.pokedex.theme.DarkWhite
-import com.paulomoura.pokedex.theme.LightBlack
+import com.paulomoura.pokedexcomposeclean.presentation.ui.theme.DarkWhite
+import com.paulomoura.pokedexcomposeclean.presentation.ui.theme.LightBlack
 
 @Composable
 fun SearchTextField(searchQuery: String, onValueChange: (String) -> Unit, darkTheme: Boolean = isSystemInDarkTheme()) {
