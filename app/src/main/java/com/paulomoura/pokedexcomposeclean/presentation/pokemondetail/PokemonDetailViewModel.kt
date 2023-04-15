@@ -8,14 +8,18 @@ import com.paulomoura.pokedexcomposeclean.domain.usecase.GetPokemonUseCase
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
-class PokemonDetailViewModel(private val getPokemonUseCase: GetPokemonUseCase) : ViewModel() {
+class PokemonDetailViewModel(private val getPokemonUseCase: GetPokemonUseCase, private val pokemonNumber: Int) : ViewModel() {
 
     private val _uiState = MutableStateFlow(PokemonDetailState())
     val uiState = _uiState.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), PokemonDetailState())
 
-    fun getPokemon(number: Int) {
+    init {
+        getPokemon()
+    }
+
+    private fun getPokemon() {
         viewModelScope.launch {
-            getPokemonUseCase.getPokemon(number).onEach { response ->
+            getPokemonUseCase.getPokemon(pokemonNumber).onEach { response ->
                 _uiState.value = when (response) {
                     is Response.Loading -> PokemonDetailState(loading = true)
                     is Response.Success -> response.data?.let { PokemonDetailState(pokemon = it) }

@@ -30,8 +30,8 @@ class MainActivity : ComponentActivity() {
                         composable(
                             route = Route.PokemonDetail.routeWithPokemonNumberArg(),
                             arguments = listOf(navArgument(Route.PokemonDetail.POKEMON_NUMBER_ARG) { type = NavType.IntType })
-                        ) {
-                            PokemonDetailScreen(it.arguments?.getInt(Route.PokemonDetail.POKEMON_NUMBER_ARG))
+                        ) { backStackEntry ->
+                            backStackEntry.arguments?.getInt(Route.PokemonDetail.POKEMON_NUMBER_ARG)?.let { PokemonDetailScreen(pokemonNumber = it) }
                         }
                     }
                 }

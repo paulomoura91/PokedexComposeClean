@@ -15,11 +15,11 @@ import com.paulomoura.pokedexcomposeclean.domain.model.Pokemon
 import com.paulomoura.pokedexcomposeclean.presentation.pokemondetail.composable.DetailPokemon
 import com.paulomoura.pokedexcomposeclean.presentation.ui.theme.PokedexComposeCleanTheme
 import org.koin.androidx.compose.getViewModel
+import org.koin.core.parameter.parametersOf
 
 @Composable
-fun PokemonDetailScreen(pokemonNumber: Int?) {
-    val viewModel: PokemonDetailViewModel = getViewModel()
-    pokemonNumber?.let { viewModel.getPokemon(it) }
+fun PokemonDetailScreen(pokemonNumber: Int) {
+    val viewModel: PokemonDetailViewModel = getViewModel(parameters = { parametersOf(pokemonNumber) })
     val pokemonDetailState by viewModel.uiState.collectAsStateWithLifecycle()
     if (pokemonDetailState.loading) {
         Box(
