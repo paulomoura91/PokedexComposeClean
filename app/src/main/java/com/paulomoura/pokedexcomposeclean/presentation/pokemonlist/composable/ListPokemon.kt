@@ -48,7 +48,7 @@ fun ListPokemon(
                         modifier = Modifier
                             .size(64.dp)
                             .padding(start = 8.dp, top = 8.dp, bottom = 8.dp),
-                        placeholder = debugPlaceholder(id = R.drawable.img)
+                        placeholder = debugPlaceholder(id = R.drawable.pokemon_placeholder)
                     )
                     Text(
                         text = String.format("%03d", pokemon.number),
