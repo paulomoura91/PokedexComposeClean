@@ -13,11 +13,7 @@ class PokemonDetailViewModel(private val getPokemonUseCase: GetPokemonUseCase) :
     private val _uiState = MutableStateFlow(PokemonDetailState())
     val uiState = _uiState.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), PokemonDetailState())
 
-    init {
-        getPokemon(2)
-    }
-
-    private fun getPokemon(number: Int) {
+    fun getPokemon(number: Int) {
         viewModelScope.launch {
             getPokemonUseCase.getPokemon(number).onEach { response ->
                 _uiState.value = when (response) {

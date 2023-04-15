@@ -11,13 +11,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavController
 import com.paulomoura.pokedexcomposeclean.domain.model.PokemonListItem
+import com.paulomoura.pokedexcomposeclean.presentation.Route
 import com.paulomoura.pokedexcomposeclean.presentation.pokemonlist.composable.ListPokemon
 import com.paulomoura.pokedexcomposeclean.presentation.ui.theme.PokedexComposeCleanTheme
 import org.koin.androidx.compose.getViewModel
 
 @Composable
-fun PokemonListScreen() {
+fun PokemonListScreen(navController: NavController) {
     val viewModel: PokemonListViewModel = getViewModel()
     val pokemonListState by viewModel.uiState.collectAsStateWithLifecycle()
     val searchTextState by viewModel.searchTextState.collectAsStateWithLifecycle()
@@ -34,7 +36,13 @@ fun PokemonListScreen() {
         Toast.makeText(LocalContext.current, pokemonListState.error, Toast.LENGTH_SHORT).show()
     }
     if (pokemonListState.pokemonListItems.isNotEmpty()) {
-        ListPokemon(pokemonListItems = pokemonListState.pokemonListItems, searchQuery = searchTextState, onValueChange = onValueChange)
+        ListPokemon(
+            pokemonListItems = pokemonListState.pokemonListItems,
+            searchQuery = searchTextState,
+            onValueChange = onValueChange
+        ) { pokemonNumber ->
+            navController.navigate(Route.PokemonDetail.navigateWithPokemonNumberArg(pokemonNumber))
+        }
     }
 }
 
@@ -46,6 +54,6 @@ fun PokemonListScreenPreview() {
         for (i in 1..50) {
             pokemons.add(PokemonListItem("Pokémon $i", i, ""))
         }
-        ListPokemon(pokemonListItems = pokemons, searchQuery = "", onValueChange = { })
+        ListPokemon(pokemonListItems = pokemons, searchQuery = "", onValueChange = { }, onNavigateToDetail = { })
     }
 }

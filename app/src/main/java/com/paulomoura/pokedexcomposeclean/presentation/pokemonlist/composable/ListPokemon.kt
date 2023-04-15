@@ -21,7 +21,8 @@ import com.paulomoura.pokedexcomposeclean.domain.model.PokemonListItem
 fun ListPokemon(
     pokemonListItems: List<PokemonListItem>,
     searchQuery: String,
-    onValueChange: (String) -> Unit
+    onValueChange: (String) -> Unit,
+    onNavigateToDetail: (Int) -> Unit
 ) {
     BackHandler(searchQuery.isNotBlank()) {
         onValueChange("")
@@ -38,7 +39,7 @@ fun ListPokemon(
                     modifier = Modifier
                         .fillMaxWidth()
                         .clickable {
-
+                            onNavigateToDetail(pokemon.number)
                         },
                     verticalAlignment = Alignment.CenterVertically
                 ) {

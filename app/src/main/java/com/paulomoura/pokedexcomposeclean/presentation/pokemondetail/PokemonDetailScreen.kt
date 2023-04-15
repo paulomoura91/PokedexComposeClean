@@ -17,8 +17,9 @@ import com.paulomoura.pokedexcomposeclean.presentation.ui.theme.PokedexComposeCl
 import org.koin.androidx.compose.getViewModel
 
 @Composable
-fun PokemonDetailScreen() {
+fun PokemonDetailScreen(pokemonNumber: Int?) {
     val viewModel: PokemonDetailViewModel = getViewModel()
+    pokemonNumber?.let { viewModel.getPokemon(it) }
     val pokemonDetailState by viewModel.uiState.collectAsStateWithLifecycle()
     if (pokemonDetailState.loading) {
         Box(
