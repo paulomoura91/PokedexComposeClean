@@ -1,13 +1,14 @@
 package com.paulomoura.pokedexcomposeclean.presentation.pokemonlist
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.paulomoura.pokedexcomposeclean.domain.model.PokemonListItem
@@ -30,7 +31,7 @@ fun PokemonListScreen() {
         }
     }
     if (pokemonListState.error.isNotBlank()) {
-        Text(text = pokemonListState.error)
+        Toast.makeText(LocalContext.current, pokemonListState.error, Toast.LENGTH_SHORT).show()
     }
     if (pokemonListState.pokemonListItems.isNotEmpty()) {
         ListPokemon(pokemonListItems = pokemonListState.pokemonListItems, searchQuery = searchTextState, onValueChange = onValueChange)
