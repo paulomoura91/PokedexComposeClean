@@ -1,4 +1,4 @@
-package com.paulomoura.pokedexcomposeclean.common.composable
+package com.paulomoura.pokedexcomposeclean.presentation.common.composable
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxWidth

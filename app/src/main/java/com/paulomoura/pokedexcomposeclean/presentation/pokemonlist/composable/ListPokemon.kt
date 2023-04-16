@@ -13,8 +13,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.paulomoura.pokedexcomposeclean.R
-import com.paulomoura.pokedexcomposeclean.common.composable.SearchTextField
-import com.paulomoura.pokedexcomposeclean.common.composable.debugPlaceholder
+import com.paulomoura.pokedexcomposeclean.presentation.common.composable.SearchTextField
+import com.paulomoura.pokedexcomposeclean.presentation.common.composable.debugPlaceholder
 import com.paulomoura.pokedexcomposeclean.domain.model.PokemonListItem
 
 @Composable
