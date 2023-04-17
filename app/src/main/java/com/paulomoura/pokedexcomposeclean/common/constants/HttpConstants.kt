@@ -2,7 +2,7 @@ package com.paulomoura.pokedexcomposeclean.common.constants
 
 object HttpConstants {
 
-    const val HOST = "192.168.15.2:8000"
+    const val HOST = "192.168.15.22:8000"
     const val HTTP_TIMEOUT = 15000L
 
     object ApiRoutes {
