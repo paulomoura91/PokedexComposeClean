@@ -16,6 +16,6 @@ data class Pokemon(
 )
 
 fun PokemonListItem.doesMatchSearch(query: String): Boolean {
-    val matchingPossibilities = listOf(number.toString(), name)
+    val matchingPossibilities = listOf(String.format("%03d", number), name)
     return matchingPossibilities.any { it.contains(query, ignoreCase = true) }
 }
